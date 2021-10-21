@@ -7,7 +7,7 @@ import java.awt.*;
 public class Cuboid implements Comparable<Cuboid> {
 
     int id;  // Cuboid id should be a six digit non-negative integer with no leading 0s
-    final int[] pos = {25, 25}; // x, y coords of the top left point of the first face of the cuboid;
+    final int[] pos = {25, 150}; // x, y coords of the top left point of the first face of the cuboid;
     int[] dims; // height/width, length of Cuboid
     Color c;
 
@@ -31,7 +31,7 @@ public class Cuboid implements Comparable<Cuboid> {
                 new Point(pos[0], pos[1]),
                 new Point(pos[0] + this.dims[0], pos[1]),
                 new Point(pos[0] + this.dims[0], pos[1] + this.dims[0]),
-                new Point(pos[0], pos[1] + this.dims[1])
+                new Point(pos[0], pos[1] + this.dims[0])
         };
     }
 
@@ -39,25 +39,27 @@ public class Cuboid implements Comparable<Cuboid> {
     // using the example of the first face complete the remainder of the code to produce an
     // output cuboid as shown in the assignment script
     private Point[] getCubeTwoPoints() {
-        int newX = pos[0] + this.dims[0];
-        int newY = pos[1] + this.dims[0];
+        int newX = pos[0] + this.dims[1];
+        int newY = pos[1] + this.dims[1];
         return new Point[]{
-                new Point(pos[0], pos[1]),
-                new Point(pos[0] + this.dims[0], pos[1]),
-                new Point(pos[0] + this.dims[0], pos[1] + this.dims[0]),
-                new Point(pos[0], pos[1] + this.dims[1])
+                new Point(newX, newY),
+                new Point(newX + this.dims[0], newY),
+                new Point(newX + this.dims[0], newY + this.dims[0]),
+                new Point(newX, newY + this.dims[0])
         };
     }
 
     // You will need to modify this method to set the colour of the Cuboid to be drawn
     // you will also need to complete the For loop to draw the lines connecting each face of the cuboid
-    public void drawCuboid(Graphics g) {
+    public void draw(Graphics g) {
 
         g.drawRect(pos[0], pos[1], this.dims[0], this.dims[0]);
         g.drawRect(pos[0] + this.dims[1], pos[1] + this.dims[1], this.dims[0], this.dims[0]);
 
         // to complete..., draw connecting lines by looping through both points arrays and using the graphics drawline() method
-
+        for (int i = 0; i < 4; i++) {
+            g.drawLine(faceOne[i].x, faceOne[i].y, faceTwo[i].x, faceTwo[i].y);
+        }
     }
 
 
@@ -76,8 +78,8 @@ public class Cuboid implements Comparable<Cuboid> {
 
     // outputs a string representation of the cuboid container object which can be used for testing
     public String toString() {
-        return "Cuboid Data:\n\t" +
-                "Face Width/height: " + dims[0] +
+        return "Cuboid Data:" +
+                "\n\tFace Width/height: " + dims[0] +
                 "\n\tLength: " + dims[1] +
                 "\n\tColour: " + c.toString() + "\n";
     }
