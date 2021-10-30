@@ -16,7 +16,7 @@ public class CuboidPanel extends JPanel {
     public boolean addCuboid(int id, int[] dims, Color c) {
         // Cuboid has already been used, then return a boolean false flag
         if (usedIDs.contains(id)) {
-            System.out.println("A cuboid with an ID of "+id+" already exists, so a new one wasn't added.");
+            System.out.println("A cuboid with an ID of " + id + " already exists, so a new one wasn't added.");
             return false;
         }
 
@@ -25,10 +25,10 @@ public class CuboidPanel extends JPanel {
         usedIDs.add(id);
 
         // Set the current cuboid to the one with the given ID, and display a message
-        setCur(id);
         System.out.println("Cuboid added successfully with ID: " + id);
 
         // Return a true flag once everything has been completed with no errors
+        setCur(id);
         return true;
     }
 
@@ -41,16 +41,15 @@ public class CuboidPanel extends JPanel {
         }
 
         // If no ID has been found, then return false
-        System.out.println("No cuboid with an ID of "+id+" was found");
         return null;
     }
 
     public void listCuboids() {
         // Lists the cuboids in a meaningful way
-        System.out.print("List of Cuboids: (");
+        System.out.print("List of Cuboid IDs: (");
 
         for (Cuboid c : cuboids) {
-            System.out.print(c.getID()+", ");
+            System.out.print(c.getID() + ", ");
         }
         System.out.println(")");
     }
