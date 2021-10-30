@@ -1,5 +1,7 @@
 import java.awt.*;
 
+// 2004820
+
 public class Cuboid implements Comparable<Cuboid> {
 
     private final int id;  // Cuboid id should be a six digit non-negative integer with no leading 0s
